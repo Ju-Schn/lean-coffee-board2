@@ -1,14 +1,18 @@
+import { userEvent } from '@storybook/testing-library';
 import { render, screen } from '@testing-library/react';
 import EntryForm from './EntryForm';
 
 describe('EntryForm', () => {
-  it('renders one input and one button', () => {
-    render(<EntryForm />);
+  it('shows a text and the author', () => {
+    const callback = jest.fn();
+    render(<EntryForm onSubmit={callback} />);
 
-    const newEntryInput = screen.getByLabelText(/add entry/i);
-    const submitButton = screen.getByRole('button', { name: /add entry/i });
+    const form = screen.getByRole('form', { name: 'Create new entry' });
+    expect(form).toBeInTheDocument();
 
-    expect(newEntryInput).toBeInTheDocument();
-    expect(submitButton).toBeInTheDocument();
+    const input = screen.getByLabelText('Entry text');
+    userEvent.type(input, 'Lorem ipsum.{enter}');
+
+    expect(callback).toHaveBeenCalledWith('Lorem ipsum.');
   });
 });

@@ -8,6 +8,4 @@ export default {
 const Template = args => <EntryForm {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-  children: 'Add Entry',
-};
+Default.args = {};

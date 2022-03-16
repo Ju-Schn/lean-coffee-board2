@@ -36,7 +36,7 @@ export default function EntryForm({ value, required, onChange, onSubmit }) {
     const form = event.target;
     const inputElement = form.elements.text;
     onSubmit(inputElement.value);
-    document.getElementById('text').value = '';
+    form.reset();
   }
 }
 

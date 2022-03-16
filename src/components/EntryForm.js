@@ -1,13 +1,7 @@
 import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 
-export default function EntryForm({
-  value,
-  required,
-  onChange,
-
-  onSubmit,
-}) {
+export default function EntryForm({ value, required, onChange, onSubmit }) {
   return (
     <Form onSubmit={handleSubmit} aria-labelledby="entry-form-name">
       <label htmlFor="text">
@@ -42,12 +36,14 @@ export default function EntryForm({
     const form = event.target;
     const inputElement = form.elements.text;
     onSubmit(inputElement.value);
+    document.getElementById('text').value = '';
   }
 }
 
 const Form = styled.form`
   display: flex;
   justify-content: space-between;
+  align-self: flex-end;
 
   input {
     width: 100%;
@@ -56,10 +52,6 @@ const Form = styled.form`
     border: none;
     box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
     color: #666;
-
-    :hover {
-      border-bottom: 2px solid #000;
-    }
   }
 `;
 
@@ -70,4 +62,5 @@ const PlusButton = styled.button`
   width: 28px;
   height: 28px;
   background-color: transparent;
+  cursor: pointer;
 `;

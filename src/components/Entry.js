@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export default function Entry({ text, author, color }) {
+export default function Entry({ text, author, color, onClick }) {
   return (
-    <Card color={color}>
+    <Card onClick={onClick} color={color}>
       {text} ({author})
     </Card>
   );

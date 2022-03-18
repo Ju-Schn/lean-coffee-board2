@@ -27,7 +27,13 @@ export default function App() {
         {entries
           ? entries.map(({ text, author, _id, color, tempId }) => (
               <li key={_id ?? tempId}>
-                <Entry text={text} author={author} color={color} />
+                <Entry
+                  text={text}
+                  author={author}
+                  color={color}
+                  _id={_id}
+                  onClick={() => handleDeleteEntry(_id)}
+                />
               </li>
             ))
           : '... loading ...'}
@@ -62,6 +68,18 @@ export default function App() {
     });
 
     mutateEntries();
+  }
+
+  async function handleDeleteEntry(_id) {
+    console.log(_id);
+
+    await fetch('/api/entries', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ _id }),
+    });
   }
 }
 

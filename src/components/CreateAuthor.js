@@ -1,6 +1,10 @@
 export default function CreateAuthor({ onSubmit }) {
   return (
-    <form onSubmit={handleSubmit} aria-label="entry-form-name">
+    <form
+      autoComplete="off"
+      onSubmit={handleSubmit}
+      aria-label="entry-form-name"
+    >
       <label htmlFor="name">What is your Name</label>
 
       <input

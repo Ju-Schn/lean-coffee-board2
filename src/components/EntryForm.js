@@ -15,6 +15,7 @@ export default function EntryForm({ value, required, onChange, onSubmit }) {
         onChange={onChange}
         required={required}
         placeholder="Add some text"
+        autoComplete="off"
       ></input>
       <PlusButton id="entry-form-name">
         <ScreenReaderOnly>Create new entry</ScreenReaderOnly>

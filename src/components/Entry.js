@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export default function Entry({ text, author }) {
+export default function Entry({ text, author, color }) {
   return (
-    <Card>
+    <Card color={color}>
       {text} ({author})
     </Card>
   );
 }
-
 const Card = styled.section`
+  background-color: ${props => (props.color ? props.color : 'hotpink')};
   padding: 20px;
   max-width: 400px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,

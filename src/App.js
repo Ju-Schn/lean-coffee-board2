@@ -9,6 +9,7 @@ const fetcher = (...args) => fetch(...args).then(res => res.json());
 
 export default function App() {
   const [authorName, setAuthorName] = useState('');
+  const [authorColor, setAuthorColor] = useState('');
   const {
     data: entries,
     error: entriesError,
@@ -24,9 +25,9 @@ export default function App() {
       <h1>Lean Coffee Board</h1>
       <EntryList role="list">
         {entries
-          ? entries.map(({ text, author, _id }) => (
-              <li key={_id}>
-                <Entry text={text} author={author} />
+          ? entries.map(({ text, author, _id, color, tempId }) => (
+              <li key={_id ?? tempId}>
+                <Entry text={text} author={author} color={color} />
               </li>
             ))
           : '... loading ...'}
@@ -37,12 +38,18 @@ export default function App() {
     <CreateAuthor onSubmit={handleAuthorInput} />
   );
 
-  function handleAuthorInput(author) {
+  function handleAuthorInput(author, color) {
     setAuthorName(author);
+    setAuthorColor(color);
   }
 
   async function handleNewEntry(text) {
-    const newEntry = { text, author: authorName };
+    const newEntry = {
+      text,
+      author: authorName,
+      color: authorColor,
+      tempId: Math.random(),
+    };
 
     mutateEntries([...entries, newEntry], false);
 

@@ -9,6 +9,7 @@ export default function CreateAuthor({ onSubmit }) {
         placeholder="put in your name ..."
         type="text"
       />
+      <input type="color" name="color" />
       <button>Save</button>
     </form>
   );
@@ -17,6 +18,7 @@ export default function CreateAuthor({ onSubmit }) {
     event.preventDefault();
     const form = event.target;
     const inputElement = form.elements.name;
-    onSubmit(inputElement.value);
+    const inputColor = form.elements.color;
+    onSubmit(inputElement.value, inputColor.value);
   }
 }

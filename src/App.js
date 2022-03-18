@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import Entry from './components/Entry';
 import EntryForm from './components/EntryForm';
 import useSWR from 'swr';
+import CreateAuthor from './components/CreateAuthor';
+import { useState } from 'react';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 
 export default function App() {
+  const [authorName, setAuthorName] = useState('');
   const {
     data: entries,
     error: entriesError,
@@ -16,7 +19,7 @@ export default function App() {
 
   if (entriesError) return <h1>Sorry, could not fetch.</h1>;
 
-  return (
+  return authorName ? (
     <>
       <h1>Lean Coffee Board</h1>
       <EntryList role="list">
@@ -30,10 +33,16 @@ export default function App() {
       </EntryList>
       <EntryForm onSubmit={handleNewEntry} />
     </>
+  ) : (
+    <CreateAuthor onSubmit={handleAuthorInput} />
   );
 
+  function handleAuthorInput(author) {
+    setAuthorName(author);
+  }
+
   async function handleNewEntry(text) {
-    const newEntry = { text, author: 'Anonymous' };
+    const newEntry = { text, author: authorName };
 
     mutateEntries([...entries, newEntry], false);
 

@@ -18,7 +18,6 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'DELETE') {
-    console.log(req.body._id);
     const entries = await Entry.findByIdAndDelete(req.body._id);
     res.json(entries);
     return;

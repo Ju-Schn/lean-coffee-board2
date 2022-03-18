@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export default function Entry({ text, author, color, onClick }) {
+export default function Entry({ created, text, author, color, onClick }) {
   return (
     <Card onClick={onClick} color={color}>
-      {text} ({author})
+      [{created}] {text} ({author})
     </Card>
   );
 }

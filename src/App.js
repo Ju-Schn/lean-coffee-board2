@@ -25,12 +25,13 @@ export default function App() {
       <h1>Lean Coffee Board</h1>
       <EntryList role="list">
         {entries
-          ? entries.map(({ text, author, _id, color, tempId }) => (
+          ? entries.map(({ text, author, _id, color, tempId, created }) => (
               <li key={_id ?? tempId}>
                 <Entry
                   text={text}
                   author={author}
                   color={color}
+                  created={created}
                   _id={_id}
                   onClick={() => handleDeleteEntry(_id)}
                 />
@@ -55,7 +56,9 @@ export default function App() {
       author: authorName,
       color: authorColor,
       tempId: Math.random(),
+      created: Date('now'),
     };
+    console.log(newEntry.created);
 
     mutateEntries([...entries, newEntry], false);
 
@@ -71,9 +74,7 @@ export default function App() {
   }
 
   async function handleDeleteEntry(_id) {
-    console.log(_id);
-
-    await fetch('/api/entries', {
+    await fetch('/api/entries/', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

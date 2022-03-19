@@ -14,6 +14,7 @@ export default function EntryForm({ value, onChange, onSubmit }) {
         value={value}
         onChange={onChange}
         required
+        minLength={3}
         placeholder="Add some text"
         autoComplete="off"
       ></input>

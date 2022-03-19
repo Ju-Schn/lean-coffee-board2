@@ -5,15 +5,10 @@ export default function CreateAuthor({ onSubmit }) {
       onSubmit={handleSubmit}
       aria-label="entry-form-name"
     >
-      <label htmlFor="name">What is your Name</label>
+      <label htmlFor="name">What is your name?</label>
 
-      <input
-        name="name"
-        id="name"
-        placeholder="put in your name ..."
-        type="text"
-      />
-      <input type="color" name="color" defaultValue={'hotpink'} />
+      <input name="name" id="name" placeholder="... type here" type="text" />
+      <input type="color" name="color" defaultValue={'#FF69B4'} />
       <button>Save</button>
     </form>
   );

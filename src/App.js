@@ -4,6 +4,7 @@ import EntryForm from './components/EntryForm';
 import useSWR from 'swr';
 import CreateAuthor from './components/CreateAuthor';
 import { useState } from 'react';
+import dayjs from 'dayjs';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json());
 
@@ -51,14 +52,14 @@ export default function App() {
   }
 
   async function handleNewEntry(text) {
+    let now = dayjs();
     const newEntry = {
       text,
       author: authorName,
       color: authorColor,
       tempId: Math.random(),
-      created: Date('now'),
+      created: now.format('D.MM.YY'),
     };
-    console.log(newEntry.created);
 
     mutateEntries([...entries, newEntry], false);
 

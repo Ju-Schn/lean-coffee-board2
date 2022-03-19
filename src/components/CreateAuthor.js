@@ -13,7 +13,7 @@ export default function CreateAuthor({ onSubmit }) {
         placeholder="put in your name ..."
         type="text"
       />
-      <input type="color" name="color" />
+      <input type="color" name="color" defaultValue={'hotpink'} />
       <button>Save</button>
     </form>
   );

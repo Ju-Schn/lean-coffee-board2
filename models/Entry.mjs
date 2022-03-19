@@ -5,7 +5,7 @@ const schema = new mongoose.Schema(
     text: mongoose.SchemaTypes.String,
     author: mongoose.SchemaTypes.String,
     color: mongoose.SchemaTypes.String,
-    created: mongoose.SchemaTypes.Date,
+    created: mongoose.SchemaTypes.String,
   },
   {
     versionKey: false,

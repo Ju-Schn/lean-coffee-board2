@@ -58,7 +58,7 @@ export default function App() {
       author: authorName,
       color: authorColor,
       tempId: Math.random(),
-      created: now.format('D.MM.YY'),
+      created: now.format('D.MM.YY,' + ' HH:mm'),
     };
 
     mutateEntries([...entries, newEntry], false);

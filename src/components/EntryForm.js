@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 
-export default function EntryForm({ value, required, onChange, onSubmit }) {
+export default function EntryForm({ value, onChange, onSubmit }) {
   return (
     <Form onSubmit={handleSubmit} aria-labelledby="entry-form-name">
       <label htmlFor="text">
@@ -13,7 +13,7 @@ export default function EntryForm({ value, required, onChange, onSubmit }) {
         type="text"
         value={value}
         onChange={onChange}
-        required={required}
+        required
         placeholder="Add some text"
         autoComplete="off"
       ></input>

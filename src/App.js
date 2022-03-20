@@ -22,7 +22,7 @@ export default function App() {
   if (entriesError) return <h1>Sorry, could not fetch.</h1>;
 
   return authorName ? (
-    <>
+    <Grid>
       <h1>Lean Coffee Board</h1>
       <EntryList role="list">
         {entries
@@ -41,7 +41,7 @@ export default function App() {
           : '... loading ...'}
       </EntryList>
       <EntryForm onSubmit={handleNewEntry} />
-    </>
+    </Grid>
   ) : (
     <CreateAuthor onSubmit={handleAuthorInput} />
   );
@@ -58,7 +58,7 @@ export default function App() {
       author: authorName,
       color: authorColor,
       tempId: Math.random(),
-      created: now.format('D.MM.YY'),
+      created: now.format('D.MM.YY,' + ' HH:mm'),
     };
 
     mutateEntries([...entries, newEntry], false);
@@ -87,7 +87,17 @@ export default function App() {
 
 const EntryList = styled.ul`
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  overflow-y: auto;
   gap: 20px;
   list-style: none;
   padding: 0;
+`;
+
+const Grid = styled.section`
+  display: grid;
+  height: 100vh;
+
+  padding: 0 20px 12px;
+  grid-template-rows: 45px auto 40px;
 `;

@@ -11,4 +11,5 @@ export const Default = Template.bind({});
 Default.args = {
   text: 'This is a text',
   author: 'Jane Doe',
+  created: '20.03.2022, 15:30',
 };

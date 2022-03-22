@@ -26,15 +26,15 @@ export default function App() {
       <h1>Lean Coffee Board</h1>
       <EntryList role="list">
         {entries
-          ? entries.map(({ text, author, _id, color, tempId, created }) => (
+          ? entries.map(({ text, author, _id, color, tempId, createdAt }) => (
               <li key={_id ?? tempId}>
                 <Entry
                   text={text}
                   author={author}
                   color={color}
-                  created={created}
+                  createdAt={createdAt}
                   _id={_id}
-                  onClick={() => handleDeleteEntry(_id)}
+                  onDelete={() => handleDeleteEntry(_id)}
                 />
               </li>
             ))
@@ -52,13 +52,11 @@ export default function App() {
   }
 
   async function handleNewEntry(text) {
-    let now = dayjs();
     const newEntry = {
       text,
       author: authorName,
       color: authorColor,
       tempId: Math.random(),
-      created: now.format('D.MM.YY, HH:mm'),
     };
 
     mutateEntries([...entries, newEntry], false);
@@ -75,6 +73,8 @@ export default function App() {
   }
 
   async function handleDeleteEntry(_id) {
+    const filteredEntries = entries.filter(entry => entry._id !== _id);
+    mutateEntries(filteredEntries, false);
     await fetch('/api/entries/', {
       method: 'DELETE',
       headers: {
@@ -82,22 +82,22 @@ export default function App() {
       },
       body: JSON.stringify({ _id }),
     });
+
+    mutateEntries();
   }
 }
 
 const EntryList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  overflow-y: auto;
-  gap: 20px;
+  gap: 15px;
   list-style: none;
-  padding: 0;
+  overflow-y: auto;
+  padding: 12px;
 `;
 
 const Grid = styled.section`
   display: grid;
   height: 100vh;
-
-  padding: 0 20px 12px;
-  grid-template-rows: 45px auto 40px;
+  grid-template-rows: 40px auto 40px;
 `;

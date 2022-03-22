@@ -1,8 +1,9 @@
+import dayjs from 'dayjs';
 import { useState } from 'react';
 import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 
-export default function Entry({ created, text, author, color, onClick }) {
+export default function Entry({ createdAt, text, author, color, onDelete }) {
   const [done, setDone] = useState(false);
 
   return (
@@ -20,8 +21,8 @@ export default function Entry({ created, text, author, color, onClick }) {
       </Icon>
       <Author>{author}:</Author>
       <span>{text}</span>
-      <Small>[{created}]</Small>
-      <ButtonDelete onClick={onClick}>
+      <Small>[{dayjs(createdAt).format('DD.MM.YYYY, HH:mm')}]</Small>
+      <ButtonDelete onClick={onDelete}>
         <ScreenReaderOnly> Delete Entry</ScreenReaderOnly>
         <svg
           fill="#D00000"
@@ -87,8 +88,8 @@ const ButtonDelete = styled.button`
   background-color: inherit;
   padding: 0;
   position: absolute;
-  top: 2%;
-  right: 1%;
+  top: 2px;
+  right: 2px;
   cursor: pointer;
 `;
 
@@ -100,8 +101,8 @@ const ButtonDone = styled.button`
   background-color: ${props => (props.done ? '#38B000' : 'inherit')};
   padding: 0;
   position: absolute;
-  top: 2%;
-  right: 12%;
+  top: 2px;
+  right: 35px;
   border-radius: 50%;
   width: 32px;
   height: 32px;
@@ -109,8 +110,9 @@ const ButtonDone = styled.button`
 `;
 
 const Small = styled.span`
-  font-size: smaller;
+  font-size: 12px;
   position: absolute;
+  color: #666;
   bottom: 2%;
   right: 1%;
 `;

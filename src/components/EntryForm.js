@@ -44,16 +44,16 @@ export default function EntryForm({ value, onChange, onSubmit }) {
 
 const Form = styled.form`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-self: flex-end;
+  align-items: baseline;
 
   input {
-    width: 100%;
-    margin-right: 20px;
-
+    margin-bottom: 10px;
     border: none;
     box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
     color: #666;
+    height: 35px;
   }
 `;
 

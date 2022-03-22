@@ -18,5 +18,5 @@ DELETE {{baseUrl}}/entries
 Content-Type: application/json
 
 {
-  "_id": "62346aabf32d78531347deb0"
+  "_id": "62385ec7d3e206db136f9b67"
 }

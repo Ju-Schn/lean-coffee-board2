@@ -35,6 +35,7 @@ export default function App() {
                   createdAt={createdAt}
                   _id={_id}
                   onDelete={() => handleDeleteEntry(_id)}
+                  onCheck={() => handleCheck(_id)}
                 />
               </li>
             ))
@@ -57,6 +58,7 @@ export default function App() {
       author: authorName,
       color: authorColor,
       tempId: Math.random(),
+      isChecked: false,
     };
 
     mutateEntries([...entries, newEntry], false);
@@ -77,6 +79,18 @@ export default function App() {
     mutateEntries(filteredEntries, false);
     await fetch('/api/entries/', {
       method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ _id }),
+    });
+
+    mutateEntries();
+  }
+
+  async function handleCheck(_id) {
+    await fetch('/api/entries/mark-as-done', {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },

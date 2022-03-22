@@ -20,3 +20,13 @@ Content-Type: application/json
 {
   "_id": "62385ec7d3e206db136f9b67"
 }
+
+### TOGGLE MARK-AS-DONE
+
+PATCH {{baseUrl}}/entries/mark-as-done
+
+{
+  "_id": "62385ec7d3e206db136f9b67"
+}
+
+
